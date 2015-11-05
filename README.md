@@ -5,9 +5,9 @@ How to run this application
 
 Create a virtualenv, activate and install dependencies:
 
-$ virtualenv ~/.virtualenvs/foobar
+$ virtualenv env
 
-$ . ~/.virtualenvs/foobar/bin/activate
+$ source env/bin/activate
 
 $ pip install -r requirements.txt
 
