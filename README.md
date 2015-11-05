@@ -9,7 +9,7 @@ $ virtualenv env
 
 $ source env/bin/activate
 
-$ pip install -r requirements.txt
+$ pip install -r 'requirements.txt'
 
 Migrate and runserver:
 
