@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html ng-app="ChatApp">
+  <head >
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="{% static 'js/angular/ng-file-upload.min.js' %}"></script>
+     {% load staticfiles %}
+    <script src="{% static 'js/angular/app.js' %}"></script>
+    <script src="{% static 'js/angular/controllers/ChatController.js' %}"></script>
+    <title>KIT Test Task: Chat</title>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,64 @@
+{% extends "KIT_test/base.html" %}
+
+{% block content %}
+<div ng-controller = "PostMessageController">
+
+{% if user and not user.is_anonymous %}
+
+  <a>Hello, {{ user.username }}!</a>
+  <div>
+  
+    <form name ="Form" novalidate>
+      
+    	<div>
+    		Enter message text
+				<div class="col-md-6">
+					<textarea ng-model="message.text" name='text' required  data-width="400" rows="6" placeholder='Message text'></textarea>
+				  <p ng-show="(Form.text.$invalid && !Form.text.$pristine && submitted) || (Form.text.$invalid && submitted) "> Please enter some text </p>							
+				</div>
+			</div>
+      <div>
+        <div>
+          Add file
+          <input type="file" ng-model="file.src"  ngf-select  name="file"/>
+          [[ file.src  ]]
+        </div>
+      </div>
+      <button type="submit"   ng-click="send_message(Form.$valid,message)" value="Save"> Send message</button>
+    </form>
+
+  </div>
+
+{% else %}
+
+  <h1> You are not logged in!</h1>
+  <br>
+  <a href="{% url 'registration' %}?next={{ request.path }}">Sign up</a>
+  <br>
+  <a href="{% url 'login' %}?next={{ request.path }}">Sign in</a>
+
+{% endif %}
+</div>
+<div ng-controller="ListMessagesController">
+  <div  ng-repeat="msg in messages|orderBy: '-timestamp' track by $index">
+    <h3> Message from "[[msg.from_user]]" on [[ msg.timestamp| date:"MM/dd/yyyy 'at' h:mma" ]]<h3>
+    <div>
+    Text: [[msg.text ]]
+    <br>
+    {% if user and not user.is_anonymous %}
+    File <a href = "[[msg.file_url]]">[[msg.file_name ]]</a>
+    {% else %}
+    <p>File: [[msg.file_name ]] </p>
+    {% endif %}
+    </div>
+  </div>
+</div>    
+
+{% if user and not user.is_anonymous %}
+
+<div>
+  <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+</div>
+
+{% endif  %}
+{% endblock %}
