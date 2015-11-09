@@ -1,11 +1,17 @@
 {% extends "KIT_test/base.html" %}
 
 {% block content %}
+
+
 <div ng-controller = "PostMessageController">
 
 {% if user and not user.is_anonymous %}
 
   <a>Hello, {{ user.username }}!</a>
+  <div>
+    <a href="{% url 'logout' %}?next={{ request.path }}"  >Logout</a>
+  </div>
+
   <div>
   
     <form name ="Form" novalidate>
@@ -46,9 +52,9 @@
     Text: [[msg.text ]]
     <br>
     {% if user and not user.is_anonymous %}
-    File <a href = "[[msg.file_url]]">[[msg.file_name ]]</a>
+    <span ng-show="msg.file_url" >File: <a href = "[[msg.file_url]]">[[msg.file_name ]]</a></span>
     {% else %}
-    <p>File: [[msg.file_name ]] </p>
+    <p ng-show="msg.file_name != ''" >File: [[msg.file_name ]] </p>
     {% endif %}
     </div>
   </div>

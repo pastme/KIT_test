@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^signin/$', 'chat.views.login',
     {'template_name': 'registration/login.html'}, name='login'),
     url(r'^logout/$', 'chat.views.logout', name='logout'),
-    url(r'^home/$', 'chat.views.home', name = 'home'),
+    url(r'^$', 'chat.views.home', name = 'home'),
 
 ]
