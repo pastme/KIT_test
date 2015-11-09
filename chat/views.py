@@ -68,7 +68,7 @@ class CreateMessage(generics.CreateAPIView):
         instance = serializer.save(from_user=self.request.user)
         logger.info(
             'User "{0}" sent message : "{1}" on  {2}'.format(
-                instance.from_user.username, instance.text, instance.timestamp
+                instance.from_user.username, instance.text.encode('utf-8'), instance.timestamp
             )
         )     
 
