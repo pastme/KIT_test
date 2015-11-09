@@ -16,6 +16,10 @@ logger = logging.getLogger(__name__)
 
 
 def registration(request):
+    """
+    Registration view
+    """
+
     if request.user.is_authenticated():
         return redirect('home')
     registration_template = 'registration/registration.html'
@@ -32,6 +36,9 @@ def registration(request):
 
 
 def login(request, *args, **kwargs):
+    """
+    Authentication view. Changes session expiry time
+    """
     if request.method == 'POST':
         if not request.POST.get('remember_me', None):
             request.session.set_expiry(0)
@@ -39,10 +46,17 @@ def login(request, *args, **kwargs):
 
 
 def logout(request):
+    """
+    Log out view
+    """
     auth_logout(request)
     return redirect('home')
 
 def home(request):
+    """
+    Serving main page template
+    """
+
     return render(request,'KIT_test/home.html')
 
 ### Api Views ###
