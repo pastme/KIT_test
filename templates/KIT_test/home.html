@@ -26,8 +26,7 @@
       <div>
         <div>
           Add file
-          <input type="file" ng-model="file.src"  ngf-select  name="file"/>
-          [[ file.src  ]]
+          <input name = "file"  type="file" ng-model="file" ngf-select  name="file"/>
         </div>
       </div>
       <button type="submit"   ng-click="send_message(Form.$valid,message)" value="Save"> Send message</button>
